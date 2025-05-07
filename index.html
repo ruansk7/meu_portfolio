@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante que a página seja responsiva em dispositivos móveis -->
+    <link rel="stylesheet" href="styles.css"> <!-- Referência ao arquivo de estilos externos -->
+    <title>Saulo Ruan | Portfólio</title>
+</head>
+<body>
+    <div class="wrapper"> <!-- Aqui envolvi todo o conteúdo dentro de uma div para controle de layout -->
+        <header>
+            <div class="logo-group">
+                <h1>Saulo Ruan</h1> 
+                <img class="codeimg" src="/images/code.png" alt="code"> 
+            </div>
+
+            <button id="menu-suspenso" aria-label="Abrir Menu">&#9776</button> <!-- Botão de menu suspenso para dispositivos móveis -->
+
+            <nav>
+                <ul id="menu-lista"> <!-- Lista de navegação com links para outras páginas -->
+                    <li><a href="index.html">Sobre Mim</a></li>
+                    <li><a href="formacao.html">Formação</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="titulo-pag">
+                <h2>Sobre Mim</h2> <!-- Título da seção -->
+            </div>
+
+            <div class="container tech-border"> <!-- Container com borda de estilo tech -->
+                <h2 class="titulo-terminal"><span class="titulo-terminal-verde">aluno@uninter:~$</span><span id="typed-text"></span></h2> <!-- Estilo de terminal com texto digitado dinamicamente -->
+                <p class="conteudo-terminal"><span id="conteudo-text"></span><span class="cursor"></span></p> <!-- Efeito de cursor / digitação do terminal -->
+            </div>
+        </main>
+
+        <footer>
+            <div class="icon-group"> <!-- Grupo de ícones de redes sociais -->
+                <a href="https://www.instagram.com/ruansk_dev/" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/instagram.png" alt=""></a>
+                <a href="https://github.com/ruansk7" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/github.png" alt=""></a>
+                <a href="https://www.linkedin.com/in/saulo-ruan-nascimento-oliveira-b3b3ba316/" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/linkedin.png" alt=""></a>
+            </div>
+            <p> <span id="ano"></span> | UNINTER Ⓡ</p> <!-- Exibe o ano atual dinamicamente -->
+        </footer>
+
+        <script>
+            // Script para controle do menu suspenso em dispositivos móveis
+            const menuBotao = document.getElementById('menu-suspenso');
+            const menuLista = document.getElementById('menu-lista');
+            menuBotao.addEventListener('click', () => {
+                menuLista.classList.toggle('active'); // Alterna a classe 'active' para mostrar/esconder o menu
+            });
+
+            document.getElementById('ano').textContent = new Date().getUTCFullYear(); // Exibe o ano atual dinamicamente
+
+            // Texto que será exibido no terminal
+            const text = " whoami";
+            const paragraphText = "Olá! Eu sou o Saulo, estudante de Engenharia de Software e atleta profissional de futebol. Sempre fui apaixonado por videogames, computadores e tudo que envolve tecnologia. Em 2019, iniciei uma loja virtual de chuteiras e foi aí que surgiu meu interesse pelo desenvolvimento web, quando criei minha própria loja no WordPress — que funcionou e vendeu bem até aproximadamente 2023. Recentemente, lancei em produção meu primeiro projeto pessoal: a Cronos Agenda, um serviço de agendamento online voltado para barbearias, salões de beleza, manicures e outros profissionais da área da beleza. Nesse projeto fui responsável por todo o planejamento, desenvolvimento e lançamento do serviço, um projeto pessoal de grande importância na minha evolução como dev. Além disso sou um entusiasta da área da cibersegurança, acho muito interessante e importante a segurança na internet.";
+
+            const typedText = document.getElementById("typed-text"); // Elemento onde o texto do terminal será mostrado
+            const typedParagraph = document.getElementById("conteudo-text"); // Elemento onde o parágrafo será mostrado
+
+            let index = 0;
+            let paragraphIndex = 0;
+
+            // Função que simula o efeito de digitação para o texto do terminal
+            function type() {
+                if (index < text.length) {
+                    typedText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 100);
+                } else {
+                    setTimeout(typeParagraph, 500);
+                }
+            }
+
+            // Função para digitar o parágrafo
+            function typeParagraph() {
+                if (paragraphIndex < paragraphText.length) {
+                    typedParagraph.textContent += paragraphText.charAt(paragraphIndex);
+                    paragraphIndex++;
+                    setTimeout(typeParagraph, 30);
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", type); // Inicia o efeito de digitação quando o conteúdo da página estiver carregado
+        </script>
+    </div>
+</body>
+</html>

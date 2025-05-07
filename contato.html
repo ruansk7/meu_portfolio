@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante que a página seja responsiva em dispositivos móveis -->
+    <link rel="stylesheet" href="styles.css"> <!-- Referência ao arquivo de estilos externos -->
+    <title>Saulo Ruan | Portfólio</title>
+</head>
+<body>
+    <div class="wrapper"> <!-- Aqui envolvi todo o conteúdo principal da página para controle de layout -->
+        <header>
+            <div class="logo-group"> <!-- Agrupa o nome e a imagem de código como identidade visual -->
+                <h1>Saulo Ruan</h1>
+                <img class="codeimg" src="/images/code.png" alt="code">
+            </div>
+
+            <button id="menu-suspenso" aria-label="Abrir Menu">&#9776</button> <!-- Botão de menu hambúrguer para dispositivos móveis -->
+
+            <nav>
+                <ul id="menu-lista"> <!-- Lista de navegação com links internos para outras páginas -->
+                    <li><a href="index.html">Sobre Mim</a></li>
+                    <li><a href="formacao.html">Formação</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="contato-titulo">
+                <h2>Contato</h2> <!-- Título principal da seção de contato -->
+            </div>
+
+            <div class="formulario-contato"> <!-- Seção do formulário de envio de mensagem -->
+                <h3>Envie uma mensagem</h3>
+                <form id="form-contato">
+                    <label for="nome">Nome:</label> <!-- Campo para nome -->
+                    <input type="text" id="nome" name="nome" required>
+
+                    <label for="email">E-mail:</label> <!-- Campo para email -->
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="mensagem">Mensagem:</label> <!-- Campo de mensagem com várias linhas -->
+                    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+
+                    <button type="submit">Enviar</button> <!-- Botão de envio -->
+                    <p id="mensagem-sucesso" style="display: none; color: green; margin-top: 1rem; text-align: center;">
+                        Mensagem enviada com sucesso!
+                    </p> <!-- Mensagem de sucesso exibida após envio -->
+                </form>
+            </div>            
+
+            <div class="contato-group"> <!-- Grupo com informações de contato -->
+                <div class="contato-item">
+                    <img class="contato-img" src="/images/email.png" alt="Email">
+                    <h3>ruansaulo@gmail.com</h3>
+                </div>
+                <div class="contato-item">
+                    <img class="contato-img" src="/images/whatsapp.png" alt="Whatsapp">
+                    <h3>(77) 77777-7777</h3>
+                </div>
+                <div class="contato-item">
+                    <img class="contato-img" src="/images/instagram.png" alt="Instagram">
+                    <h3>@ruansk_dev</h3>
+                </div>
+                <div class="contato-item">
+                    <img class="contato-img" src="/images/github.png" alt="GitHub">
+                    <h3>ruansk7</h3>
+                </div>
+                <div></div> <!-- Espaço vazio para alinhamento do layout -->
+            </div>
+        </main>          
+
+        <footer>
+            <div class="icon-group"> <!-- Grupo de ícones com links para redes sociais -->
+                <a href="https://www.instagram.com/ruansk_dev/" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/instagram.png" alt=""></a>
+                <a href="https://github.com/ruansk7" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/github.png" alt=""></a>
+                <a href="https://www.linkedin.com/in/saulo-ruan-nascimento-oliveira-b3b3ba316/" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/linkedin.png" alt=""></a>
+            </div>
+            <p> <span id="ano"></span> | UNINTER Ⓡ</p> <!-- Exibe dinamicamente o ano atual no rodapé -->
+        </footer>
+
+        <script>
+            // Script para controle do menu suspenso em dispositivos móveis
+            const menuBotao = document.getElementById('menu-suspenso');
+            const menuLista = document.getElementById('menu-lista');
+
+            menuBotao.addEventListener('click', () => {
+                menuLista.classList.toggle('active'); // Alterna visibilidade do menu ao clicar
+            });
+
+            // Exibe o ano atual dinamicamente no rodapé
+            document.getElementById('ano').textContent = new Date().getUTCFullYear();
+
+            // Lógica do envio do formulário de contato
+            document.getElementById('form-contato').addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio real do formulário
+
+                const mensagemSucesso = document.getElementById('mensagem-sucesso');
+                mensagemSucesso.style.display = 'block'; // Mostra a mensagem de sucesso
+
+                this.reset(); // Limpa os campos do formulário
+
+                // Oculta a mensagem após 5 segundos
+                setTimeout(() => {
+                    mensagemSucesso.style.display = 'none';
+                }, 5000);
+            });
+        </script>
+    </div>
+</body>
+</html>

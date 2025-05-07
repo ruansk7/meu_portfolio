@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Referência ao arquivo de estilos externos -->
+    <title>Saulo Ruan | Portfólio</title> <!-- Título da página exibido no navegador -->
+</head>
+<body>
+    <div class="wrapper"> <!-- Container principal que envolve o conteúdo da página -->
+        <header>
+            <div class="logo-group">
+                <h1>Saulo Ruan</h1> <!-- Nome do desenvolvedor -->
+                <img class="codeimg" src="/images/code.png" alt="code"> <!-- Imagem associada ao tema de programação -->
+            </div>
+
+            <button id="menu-suspenso" aria-label="Abrir Menu">&#9776</button> <!-- Botão para abrir o menu suspenso em dispositivos móveis -->
+
+            <nav>
+                <ul id="menu-lista"> <!-- Lista de navegação com links para outras páginas -->
+                    <li><a href="index.html">Sobre Mim</a></li>
+                    <li><a href="formacao.html">Formação</a></li>
+                    <li><a href="portfolio.html">Portfólio</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="titulo-pag">
+                <h2>Formação e Idiomas</h2> <!-- Título da seção de formação e idiomas -->
+            </div>
+
+            <div class="container tech-border"> <!-- Container com borda de estilo tech -->
+                <h2 class="titulo-terminal"><span class="titulo-terminal-verde">saulo@uninter:~$</span><span id="typed-text"></span></h2> <!-- Estilo de terminal com texto digitado dinamicamente -->
+                <p class="conteudo-terminal"><span id="conteudo-text"></span><span class="cursor"></span></p> <!-- Efeito de digitação do terminal -->
+                <h2 class="titulo-terminal"><span class="titulo-terminal-verde">saulo@uninter:~$</span><span id="typed-text2"></span></h2> <!-- Estilo de terminal para o segundo texto -->
+                <p class="conteudo-terminal"><span id="conteudo-text2"></span><span class="cursor"></span></p> <!-- Efeito de digitação do segundo parágrafo -->
+            </div>
+
+            <div class="img-form">
+                <img class="img-formacoes" src="/images/winner.png" alt=""> <!-- Imagem ilustrativa relacionada à formação -->
+            </div>
+        </main>
+
+        <footer>
+            <div class="icon-group"> <!-- Grupo de ícones de redes sociais -->
+                <a href="https://www.instagram.com/ruansk_dev/" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/instagram.png" alt="Instagram"></a> <!-- Link para o Instagram -->
+                <a href="https://github.com/ruansk7" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/github.png" alt="GitHub"></a> <!-- Link para o GitHub -->
+                <a href="https://www.linkedin.com/in/saulo-ruan-nascimento-oliveira-b3b3ba316/" target="_blank" rel="noopener noreferrer"><img class="icon-img" src="/images/linkedin.png" alt="LinkedIn"></a> <!-- Link para o LinkedIn -->
+            </div>
+            <p> <span id="ano"></span> | UNINTER Ⓡ</p> <!-- Exibe o ano atual dinamicamente -->
+        </footer>
+
+        <script>
+            // Controle do menu suspenso para dispositivos móveis
+            const menuBotao = document.getElementById('menu-suspenso');
+            const menuLista = document.getElementById('menu-lista');
+
+            menuBotao.addEventListener('click', () => {
+                menuLista.classList.toggle('active'); // Alterna a visibilidade do menu
+            });
+
+            document.getElementById('ano').textContent = new Date().getUTCFullYear(); // Exibe o ano atual dinamicamente
+
+            // Texto do terminal
+            const text = " formação"; // Primeira parte do texto que será exibida no terminal
+            const text2 = " idiomas"; // Segunda parte do texto que será exibida no terminal
+            const paragraphText = "> Engenharia de Software (2024-2028) | UNINTER Centro Universitário Internacional."; // Parágrafo sobre a formação
+            const paragraphText2 = "> Português (Nativo) | Espanhol (Avançado) | Inglês (Intermediário) | Italiano (Básico) | Alemão (Básico)."; // Parágrafo sobre os idiomas
+
+            const typedText = document.getElementById("typed-text");
+            const typedText2 = document.getElementById("typed-text2");
+            const typedParagraph = document.getElementById("conteudo-text");
+            const typedParagraph2 = document.getElementById("conteudo-text2");
+
+            let index = 0;
+            let index2 = 0;
+            let paragraphIndex = 0;
+            let paragraphIndex2 = 0;
+
+            // Função para simular o efeito de digitação para o primeiro texto
+            function type() {
+                if (index < text.length) {
+                    typedText.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, 100); // Chama a função recursivamente para cada caractere
+                } else {
+                    setTimeout(typeParagraph, 500); // Inicia a digitação do parágrafo após a conclusão do texto
+                }
+            }
+
+            // Função para simular o efeito de digitação para o segundo texto
+            function type2() {
+                if (index2 < text2.length) {
+                    typedText2.textContent += text2.charAt(index2);
+                    index2++;
+                    setTimeout(type2, 100); // Chama a função recursivamente para cada caractere
+                } else {
+                    setTimeout(typeParagraph2, 500); // Inicia a digitação do segundo parágrafo após a conclusão do texto
+                }
+            }
+
+            // Função para digitar o parágrafo de formação
+            function typeParagraph() {
+                if (paragraphIndex < paragraphText.length) {
+                    typedParagraph.textContent += paragraphText.charAt(paragraphIndex);
+                    paragraphIndex++;
+                    setTimeout(typeParagraph, 30); // Chama a função recursivamente para cada caractere
+                }
+            }
+
+            // Função para digitar o parágrafo de idiomas
+            function typeParagraph2() {
+                if (paragraphIndex2 < paragraphText2.length) {
+                    typedParagraph2.textContent += paragraphText2.charAt(paragraphIndex2);
+                    paragraphIndex2++;
+                    setTimeout(typeParagraph2, 30); // Chama a função recursivamente para cada caractere
+                }
+            }
+
+            window.addEventListener("DOMContentLoaded", type); // Inicia a digitação do primeiro texto quando o conteúdo da página estiver carregado
+            window.addEventListener("DOMContentLoaded", type2); // Inicia a digitação do segundo texto quando o conteúdo da página estiver carregado
+        </script>
+    </div>
+</body>
+</html>
